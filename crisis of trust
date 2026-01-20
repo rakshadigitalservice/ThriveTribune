@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepfakes 3.0: The Dawn of Digital Doppelgängers</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #e2e8f0; /* Slate 200 */
+        }
+
+        /* AI Text Effect Styles */
+        .ai-reveal {
+            opacity: 0; /* Hidden initially */
+            display: inline-block;
+        }
+        
+        .ai-revealed {
+            opacity: 1;
+        }
+
+        /* Optional: Monospace font for the scrambling phase adds to the 'code' feel */
+        .scrambling {
+            font-family: 'Courier New', Courier, monospace;
+            color: #22d3ee; /* Cyan during scramble */
+        }
+        
+        /* Palette: "Electric Future" - Vibrant Blue/Cyan/Pink */
+        .text-accent { color: #22d3ee; } /* Cyan 400 */
+        .bg-accent { background-color: #22d3ee; }
+        .text-highlight { color: #f472b6; } /* Pink 400 */
+        .bg-highlight { background-color: #f472b6; }
+        .card-bg { background-color: #1e293b; } /* Slate 800 */
+        
+        /* Chart Container Styling - Mandatory Requirements */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Constraint */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height */
+            max-height: 400px;
+        }
+        
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(to right, #22d3ee, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+    <!-- 
+        Selected Palette: "Electric Future" (Derived from energetic/playful concepts)
+        Colors: #0f172a (Dark Background), #22d3ee (Cyan Accent), #f472b6 (Pink Highlight), #ffffff (White Text)
+        Justification: High contrast for tech/cyberpunk theme of "Deepfakes", ensures readability and engagement.
+    -->
+    <!-- 
+        Narrative Plan:
+        1. Hero: Headline + Hook (Deepfakes 3.0 Definition).
+        2. Evolution: Radar Chart comparing 1.0, 2.0, 3.0 (Goal: Compare/Change).
+        3. Analysis: Point-wise breakdown of the report using Cards.
+        4. Risks vs Opportunities: Bar Chart (Goal: Compare).
+        5. Impact: Who is affected? (Goal: Inform).
+        6. Conclusion/Future: What to watch next.
+    -->
+    <!-- 
+        Chart Selection Justifications (NO SVG):
+        - Radar Chart: Perfect for comparing multi-variable performance (Audio, Visual, Latency) across versions.
+        - Bar Chart: Best for categorical comparison of Risks vs Commercial Opportunities.
+        - Doughnut Chart: To show the composition of the "Deepfake 3.0 Ecosystem" (Multimodal AI, 3D, Watermarking).
+    -->
+    <!-- NO MERMAID JS USED. NO SVG USED. -->
+</head>
+<body class="antialiased selection:bg-cyan-500 selection:text-white">
+
+    <!-- Header Section -->
+    <header class="w-full py-16 px-6 text-center border-b border-slate-800 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1633213596914-747d91547844?q=80&w=2070&auto=format&fit=crop')] opacity-10 bg-cover bg-center"></div>
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <span class="inline-block py-1 px-3 rounded-full bg-cyan-900/50 text-cyan-300 text-xs font-bold tracking-wider mb-4 border border-cyan-700">THRIVE TRIBUNE ANALYSIS • JAN 2026</span>
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 ai-reveal">
+                Deepfakes <span class="gradient-text">3.0</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                The Dawn of Al-Powered Digital Doppelgängers: From static forgeries to autonomous, real-time personas.
+            </p>
+        </div>
+    </header>
+
+    <!-- Opening Summary -->
+    <section class="max-w-4xl mx-auto px-6 py-12">
+        <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 shadow-lg backdrop-blur-sm">
+            <h2 class="text-2xl font-bold text-white mb-4 ai-reveal">Executive Summary</h2>
+            <p class="text-slate-300 leading-7 text-lg">
+                Deepfake technology has evolved from a niche curiosity into a transformative global force. <strong>Deepfakes 3.0</strong> represents a leap where synthetic media is no longer just about swapping faces in videos. It now enables fully interactive, photorealistic AI avatars that operate autonomously in real-time. This report analyzes the technical breakthroughs, the massive commercial potential for "digital influencers," and the critical security threats posed by these dynamic personas.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 1: The Evolution (Radar Chart) -->
+    <section class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+            <div class="mb-2">
+                <span class="text-highlight font-bold uppercase tracking-wider text-sm">The Technology Shift</span>
+            </div>
+            <h2 class="text-3xl font-bold text-white mb-6 ai-reveal">A Decisive Leap Forward</h2>
+            <p class="text-slate-400 mb-6 leading-relaxed">
+                Early deepfakes (1.0) were static and glitchy. The new generation (3.0) integrates <strong>multimodal generative AI</strong> to produce avatars that respond flexibly to complex inputs. The key differentiator is <span class="text-cyan-400 font-semibold">real-time adaptability</span>: synchronized lip movements, subtle emotional nuances, and interactive capabilities that rival human presence.
+            </p>
+            <ul class="space-y-4">
+                <li class="flex items-start">
+                    <span class="flex-shrink-0 h-6 w-6 rounded-full bg-cyan-900 flex items-center justify-center text-cyan-400 text-sm font-bold mt-1">1</span>
+                    <div class="ml-4">
+                        <h3 class="text-white font-semibold ai-reveal">From Static to Dynamic</h3>
+                        <p class="text-slate-400 text-sm">No longer just pre-rendered videos; these are live, responsive agents.</p>
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <span class="flex-shrink-0 h-6 w-6 rounded-full bg-cyan-900 flex items-center justify-center text-cyan-400 text-sm font-bold mt-1">2</span>
+                    <div class="ml-4">
+                        <h3 class="text-white font-semibold ai-reveal">Multimodal Integration</h3>
+                        <p class="text-slate-400 text-sm">Combines audio, visual, and behavioral AI for seamless realism.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Chart Container 1 -->
+        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-xl">
+            <h3 class="text-center text-slate-200 font-semibold mb-4 text-sm uppercase tracking-widest ai-reveal">Generational Capabilities</h3>
+            <div class="chart-container">
+                <canvas id="evolutionChart"></canvas>
+            </div>
+            <p class="text-center text-slate-500 text-xs mt-4">Comparing Deepfake 1.0 (Legacy) vs. 3.0 (Modern AI)</p>
+        </div>
+    </section>
+
+    <!-- Section 2: Point-Wise Analysis (Cards) -->
+    <section class="bg-slate-900 py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white mb-10 text-center ai-reveal">In-Depth Analysis</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="card-bg rounded-xl p-8 border-t-4 border-cyan-500 shadow-lg hover:translate-y-1 transition-transform duration-300">
+                    <div class="text-4xl mb-4">🤖</div>
+                    <h3 class="text-xl font-bold text-white mb-3 ai-reveal">What is Stated?</h3>
+                    <p class="text-slate-400 text-sm leading-6">
+                        The document outlines the creation of a complex ecosystem fusing <strong>3D avatar platforms</strong>, multimodal AI, and forensic watermarking. It's not just a tool, but a new medium of communication.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card-bg rounded-xl p-8 border-t-4 border-pink-500 shadow-lg hover:translate-y-1 transition-transform duration-300">
+                    <div class="text-4xl mb-4">⚠️</div>
+                    <h3 class="text-xl font-bold text-white mb-3 ai-reveal">Why it Matters?</h3>
+                    <p class="text-slate-400 text-sm leading-6">
+                        Identity stability is now fluid. We are moving from "seeing is believing" to a "zero-trust" environment. The potential for <strong>misinformation, fraud, and identity theft</strong> has scaled exponentially.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card-bg rounded-xl p-8 border-t-4 border-purple-500 shadow-lg hover:translate-y-1 transition-transform duration-300">
+                    <div class="text-4xl mb-4">💰</div>
+                    <h3 class="text-xl font-bold text-white mb-3 ai-reveal">The Opportunity</h3>
+                    <p class="text-slate-400 text-sm leading-6">
+                        For businesses, this offers scalable <strong>digital influencers</strong> and customer support agents. Brands can monetize personas that work 24/7 without fatigue.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Impact & Stakeholders (Bar Chart) -->
+    <section class="max-w-6xl mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            <!-- Chart Container 2 -->
+            <div class="order-2 lg:order-1">
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-xl">
+                    <h3 class="text-center text-slate-200 font-semibold mb-2 text-sm uppercase tracking-widest ai-reveal">Sector Risk vs. Opportunity</h3>
+                    <p class="text-center text-slate-500 text-xs mb-6">Quantifying the impact on major industries</p>
+                    <div class="chart-container">
+                        <canvas id="impactChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-1 lg:order-2 flex flex-col justify-center">
+                <span class="text-cyan-400 font-bold uppercase tracking-wider text-sm mb-2">Public Impact Analysis</span>
+                <h2 class="text-3xl font-bold text-white mb-6 ai-reveal">Who is Affected?</h2>
+                
+                <div class="space-y-6">
+                    <div class="border-l-4 border-cyan-500 pl-4">
+                        <h4 class="text-white font-bold text-lg ai-reveal">Common Citizens</h4>
+                        <p class="text-slate-400 text-sm">Increased risk of targeted scams (e.g., a "relative" asking for money via video call) and difficulty distinguishing real news from fake.</p>
+                    </div>
+                    
+                    <div class="border-l-4 border-pink-500 pl-4">
+                        <h4 class="text-white font-bold text-lg ai-reveal">Professionals & Creators</h4>
+                        <p class="text-slate-400 text-sm">New revenue streams for creating digital personas, but high risk of likeness theft. Security experts must learn "invisible watermarking" forensics.</p>
+                    </div>
+
+                    <div class="border-l-4 border-purple-500 pl-4">
+                        <h4 class="text-white font-bold text-lg ai-reveal">Product Owners</h4>
+                        <p class="text-slate-400 text-sm">Must implement robust compliance frameworks. Transparency is non-negotiable to maintain user trust.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Key Takeaways -->
+    <section class="bg-gradient-to-r from-slate-900 to-slate-800 py-16 border-y border-slate-800">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-white mb-10 ai-reveal">Key Takeaways</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                <div class="flex items-start bg-slate-800/50 p-4 rounded-lg">
+                    <span class="text-cyan-400 text-xl mr-3">✔</span>
+                    <span class="text-slate-300"><strong>Deepfakes 3.0</strong> are dynamic, interactive, and autonomous, not just static videos.</span>
+                </div>
+                <div class="flex items-start bg-slate-800/50 p-4 rounded-lg">
+                    <span class="text-cyan-400 text-xl mr-3">✔</span>
+                    <span class="text-slate-300"><strong>Forensic Watermarking</strong> is becoming mandatory to detect invisible manipulations.</span>
+                </div>
+                <div class="flex items-start bg-slate-800/50 p-4 rounded-lg">
+                    <span class="text-cyan-400 text-xl mr-3">✔</span>
+                    <span class="text-slate-300"><strong>Commercial Boom:</strong> Scalable AI avatars are the new "Digital Influencers."</span>
+                </div>
+                <div class="flex items-start bg-slate-800/50 p-4 rounded-lg">
+                    <span class="text-cyan-400 text-xl mr-3">✔</span>
+                    <span class="text-slate-300"><strong>Security Crisis:</strong> The threat of fraud and identity theft requires immediate policy action.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: What to Watch Next -->
+    <section class="max-w-4xl mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold text-white mb-8 text-center ai-reveal">What to Watch Next</h2>
+        
+        <div class="relative border-l border-slate-700 ml-6 md:ml-12 space-y-12">
+            <!-- Timeline Item 1 -->
+            <div class="relative pl-8">
+                <div class="absolute -left-1.5 top-1.5 h-3 w-3 rounded-full bg-cyan-500 shadow-[0_0_10px_#22d3ee]"></div>
+                <h4 class="text-white font-bold text-lg mb-1 ai-reveal">Regulation & Policy</h4>
+                <p class="text-slate-400 text-sm">Expect governments to enforce authenticity standards and mandatory labeling of synthetic content.</p>
+            </div>
+            
+            <!-- Timeline Item 2 -->
+            <div class="relative pl-8">
+                <div class="absolute -left-1.5 top-1.5 h-3 w-3 rounded-full bg-pink-500 shadow-[0_0_10px_#f472b6]"></div>
+                <h4 class="text-white font-bold text-lg mb-1 ai-reveal">Forensic Arms Race</h4>
+                <p class="text-slate-400 text-sm">Security tools will evolve to detect "invisible watermarks," while bad actors attempt to bypass them.</p>
+            </div>
+            
+            <!-- Timeline Item 3 -->
+            <div class="relative pl-8">
+                <div class="absolute -left-1.5 top-1.5 h-3 w-3 rounded-full bg-purple-500 shadow-[0_0_10px_#a855f7]"></div>
+                <h4 class="text-white font-bold text-lg mb-1 ai-reveal">Mainstream Adoption</h4>
+                <p class="text-slate-400 text-sm">AI-powered digital doppelgängers will shift from novelty to norm in media, customer service, and social interaction.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 py-12 text-center border-t border-slate-900">
+        <p class="text-slate-500 text-sm">Generated Analysis based on "Thrive Tribune - January 2026"</p>
+        <p class="text-slate-600 text-xs mt-2">.</p>
+    </footer>
+
+    <!-- Script to Render Charts -->
+    <script>
+        // Common Tooltip Configuration for Multi-line Labels
+        const tooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        };
+
+        // Utility to Wrap Long Labels
+        function wrapLabel(str, maxLen = 16) {
+            if (str.length <= maxLen) return str;
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + " " + words[i]).length <= maxLen) {
+                    currentLine += " " + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* AI TEXT DECODE EFFECT LOGIC                       */
+        /* -------------------------------------------------------------------------- */
+
+        const CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?/";
+        const DECODE_DURATION = 1500; // Total time to reveal in ms
+        const FRAME_RATE = 50; // ms per frame
+
+        class TextScramble {
+            constructor(el) {
+                this.el = el;
+                this.originalText = el.innerText; // Keep original text
+                this.isAnimating = false;
+                
+                // Clear text initially for reveal
+                this.el.innerText = ""; 
+                this.el.style.opacity = "1"; // Make visible but empty
+                
+                this.animate();
+            }
+
+            animate() {
+                this.isAnimating = true;
+                const length = this.originalText.length;
+                let startTime = Date.now();
+                
+                // Add scrambling class for style
+                this.el.classList.add('scrambling');
+
+                const interval = setInterval(() => {
+                    const timePassed = Date.now() - startTime;
+                    const progress = Math.min(timePassed / DECODE_DURATION, 1);
+                    
+                    let output = "";
+                    
+                    // Logic: 
+                    // 1. Characters already "solved" based on progress
+                    // 2. A block of random characters that is shrinking
+                    // 3. The rest is empty (optional, but here we just fill width)
+                    
+                    const charsToReveal = Math.floor(length * progress);
+                    
+                    for (let i = 0; i < length; i++) {
+                        if (i < charsToReveal) {
+                            // Character is revealed
+                            output += this.originalText[i];
+                        } else {
+                            // Character is random
+                            output += CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
+                        }
+                    }
+
+                    this.el.innerText = output;
+
+                    if (progress >= 1) {
+                        clearInterval(interval);
+                        this.el.innerText = this.originalText; // Ensure exact match at end
+                        this.el.classList.remove('scrambling');
+                        this.isAnimating = false;
+                    }
+
+                }, FRAME_RATE);
+            }
+        }
+
+        // Intersection Observer to trigger effect
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 // Trigger when 10% visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    // Check if already animated to prevent loop (optional, but good for UX)
+                    if (!target.classList.contains('ai-revealed')) {
+                        new TextScramble(target);
+                        target.classList.add('ai-revealed');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Target all elements with class 'ai-reveal'
+        document.querySelectorAll('.ai-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        /* -------------------------------------------------------------------------- */
+        /* CHART GENERATION                               */
+        /* -------------------------------------------------------------------------- */
+
+        // --- CHART 1: Evolution (Radar) ---
+        const ctxEvolution = document.getElementById('evolutionChart').getContext('2d');
+        new Chart(ctxEvolution, {
+            type: 'radar',
+            data: {
+                labels: ['Real-time', 'Visual Fidelity', 'Audio Sync', 'Emotional Depth', 'Autonomy'],
+                datasets: [
+                    {
+                        label: 'Deepfake 1.0 (2018)',
+                        data: [20, 40, 30, 10, 5],
+                        backgroundColor: 'rgba(148, 163, 184, 0.2)', // Slate 400
+                        borderColor: 'rgba(148, 163, 184, 1)',
+                        pointBackgroundColor: 'rgba(148, 163, 184, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Deepfake 3.0 (2026)',
+                        data: [95, 98, 95, 90, 85],
+                        backgroundColor: 'rgba(34, 211, 238, 0.2)', // Cyan
+                        borderColor: '#22d3ee',
+                        pointBackgroundColor: '#22d3ee',
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: '#334155' },
+                        grid: { color: '#334155' },
+                        pointLabels: {
+                            color: '#cbd5e1',
+                            font: { size: 11 }
+                        },
+                        ticks: { display: false, backdropColor: 'transparent' },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: { color: '#e2e8f0' }
+                    },
+                    tooltip: {
+                        ...tooltipConfig,
+                        backgroundColor: '#0f172a',
+                        titleColor: '#22d3ee',
+                        bodyColor: '#e2e8f0',
+                        borderColor: '#334155',
+                        borderWidth: 1
+                    }
+                }
+            }
+        });
+
+        // --- CHART 2: Impact Analysis (Bar) ---
+        const ctxImpact = document.getElementById('impactChart').getContext('2d');
+        const rawLabels = ['Media & Entertainment', 'Cyber Security', 'Social Media', 'Finance/Banking', 'Legal/Policy'];
+        const processedLabels = rawLabels.map(l => wrapLabel(l));
+
+        new Chart(ctxImpact, {
+            type: 'bar',
+            data: {
+                labels: processedLabels,
+                datasets: [
+                    {
+                        label: 'Fraud/Risk Score',
+                        data: [30, 90, 75, 95, 60],
+                        backgroundColor: '#f472b6', // Pink
+                    },
+                    {
+                        label: 'Business Opportunity',
+                        data: [95, 80, 90, 40, 30],
+                        backgroundColor: '#22d3ee', // Cyan
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        ticks: { color: '#94a3b8', font: { size: 10 } },
+                        grid: { display: false }
+                    },
+                    y: {
+                        ticks: { color: '#94a3b8' },
+                        grid: { color: '#334155' },
+                        beginAtZero: true,
+                        max: 100
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: { color: '#e2e8f0' }
+                    },
+                    tooltip: {
+                        ...tooltipConfig,
+                        backgroundColor: '#0f172a',
+                        borderColor: '#334155',
+                        borderWidth: 1
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
