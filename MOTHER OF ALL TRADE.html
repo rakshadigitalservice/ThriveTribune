@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India-EU FTA: The Mother of All Deals</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Palette Choice: "Professional & Playful" - High contrast Blue/Orange/Teal based on EU/India flags -->
+    <!-- Palette: #1e3a8a (Deep Blue), #ea580c (Burnt Orange), #0f766e (Teal), #f3f4f6 (Light Gray) -->
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f3f4f6; /* Neutral background */
+        }
+        
+        /* Chart Container Styling - Mandatory Requirements */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Constrain width for readability */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height */
+            max-height: 400px;
+        }
+
+        /* Responsive adjustments for chart height */
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        /* Card Styling for Material Design feel */
+        .infographic-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s;
+        }
+
+        .infographic-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .highlight-text {
+            color: #ea580c; /* Orange accent */
+            font-weight: 700;
+        }
+
+        .section-header {
+            border-left: 5px solid #1e3a8a; /* Deep Blue accent */
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+            color: #1e3a8a;
+        }
+    </style>
+    <!-- 
+        Palette: Vibrant Professional
+        Deep Blue: #1e3a8a
+        Vibrant Orange: #ea580c
+        Teal: #0f766e
+        Slate: #64748b
+    -->
+    <!-- 
+        Source Analysis Summary:
+        - Event: India-EU FTA signed.
+        - Narrative: Historic deal lifting manufacturing/services, 96% tariff-free, strategic shift from US.
+        - Structure: Intro -> Economic Scale -> Specific Benefits -> Timeline -> Strategic Context.
+    -->
+    <!-- 
+        Visualization Plan:
+        1. GDP/Trade Share -> Doughnut Charts (Inform)
+        2. Tariff Reduction -> Pie Chart (Inform/Change)
+        3. Beneficiary Sectors -> Horizontal Bar Chart (Organize)
+        4. Timeline Comparison -> Bar Chart (Compare)
+        5. US vs Diversification -> Grouped Bar Chart (Compare/Change)
+        
+        Confirmations:
+        - NO SVG used.
+        - NO Mermaid JS used.
+        - Canvas used for all charts.
+        - Tailwind used for layout.
+    -->
+</head>
+<body class="text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-blue-900 to-blue-700 text-white p-8 shadow-lg">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">The Mother of All Deals</h1>
+            <h2 class="text-xl md:text-2xl font-light text-blue-100">India & European Union Historic Free Trade Agreement</h2>
+            <div class="mt-6 flex justify-center space-x-8 text-3xl">
+                <span>🇮🇳</span>
+                <span>🤝</span>
+                <span>🇪🇺</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-6xl mx-auto p-4 md:p-8">
+        
+        <!-- Introduction -->
+        <section class="mb-12 text-center max-w-3xl mx-auto">
+            <p class="text-lg md:text-xl leading-relaxed">
+                After nearly 20 years of complex negotiations, India and the European Union have signed a landmark Free Trade Agreement (FTA). Prime Minister Narendra Modi hails it as a transformative pact that will lift manufacturing, expand services, and cement a strategic technology and defense partnership.
+            </p>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <!-- Section 1: Economic Powerhouse -->
+            <div class="infographic-card md:col-span-2">
+                <h3 class="text-2xl font-bold section-header">Global Economic Weight</h3>
+                <p class="mb-6 text-gray-600">
+                    This agreement is not just bilateral; it is a global economic shifter. The combined entity of India and the EU represents a massive portion of the world's economy.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- GDP Chart -->
+                    <div class="flex flex-col items-center">
+                        <div class="chart-container">
+                            <canvas id="gdpChart"></canvas>
+                        </div>
+                        <p class="text-sm mt-2 font-semibold text-center text-blue-900">25% of Global GDP</p>
+                    </div>
+                    <!-- Trade Chart -->
+                    <div class="flex flex-col items-center">
+                        <div class="chart-container">
+                            <canvas id="tradeChart"></canvas>
+                        </div>
+                        <p class="text-sm mt-2 font-semibold text-center text-orange-700">1/3rd of Global Trade</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Tariff Slash -->
+            <div class="infographic-card">
+                <h3 class="text-2xl font-bold section-header">Shattering Trade Barriers</h3>
+                <p class="mb-4 text-gray-600">
+                    One of the most aggressive aspects of the deal is the near-total elimination of tariffs. This move opens the floodgates for Indian exports to European markets.
+                </p>
+                <div class="chart-container">
+                    <canvas id="tariffChart"></canvas>
+                </div>
+                <div class="mt-4 bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="text-sm text-blue-800">
+                        <strong>Key Insight:</strong> 96% of trade will gradually become tariff-free, significantly reducing costs for exporters and consumers alike.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Section 3: Sector Winners -->
+            <div class="infographic-card">
+                <h3 class="text-2xl font-bold section-header">Top Beneficiary Sectors</h3>
+                <p class="mb-4 text-gray-600">
+                    Specific industries are poised for immediate growth due to duty-free access. Marine products, textiles, and leather goods stand to gain the most.
+                </p>
+                <div class="chart-container">
+                    <canvas id="sectorsChart"></canvas>
+                </div>
+                <div class="mt-4 text-sm text-gray-500 text-center italic">
+                    *Relative impact potential based on duty-free access priority.
+                </div>
+            </div>
+
+            <!-- Section 4: The Timeline -->
+            <div class="infographic-card md:col-span-2">
+                <h3 class="text-2xl font-bold section-header">A Long Road to Victory</h3>
+                <p class="mb-6 text-gray-600">
+                    Trade deals are notoriously difficult. This agreement was nearly two decades in the making, yet it concluded faster than the EU-Mercosur negotiation.
+                </p>
+                <div class="chart-container" style="max-width: 800px;">
+                    <canvas id="timelineChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Section 5: Strategic Context -->
+            <div class="infographic-card md:col-span-2">
+                <h3 class="text-2xl font-bold section-header">2026: The Year of Diversification</h3>
+                <p class="mb-6 text-gray-600">
+                    The deal comes at a critical geopolitical juncture. As US trade policy becomes unpredictable with threats of tariff hikes (up to 75%), India is strategically pivoting to diversify its partnerships.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="chart-container">
+                        <canvas id="strategyChart"></canvas>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-red-50 p-4 rounded border-l-4 border-red-500">
+                            <h4 class="font-bold text-red-800">The US Risk</h4>
+                            <p class="text-sm text-gray-700">Tariffs on Indian imports are currently high (50%) and could rise to 75% under new threats.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded border-l-4 border-green-500">
+                            <h4 class="font-bold text-green-800">The EU Solution</h4>
+                            <p class="text-sm text-gray-700">The FTA provides a stable, low-tariff alternative, reducing economic dependence on Washington.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-12 text-center text-gray-500 text-sm pb-8 border-t pt-8">
+            <h3 class="text-2xl font-bold text-blue-900 mb-2">Thrive Tribune</h3>
+            <p class="font-medium">Data Source: Recent India-EU FTA Reports</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- Utility Functions ---
+
+        // Label Wrapping Helper: Splits strings > 16 chars into arrays for Chart.js
+        function formatLabel(str) {
+            if (str.length <= 16) return str;
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + 1 + words[i].length <= 16) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // Global Chart Defaults for Fonts and Colors
+        Chart.defaults.font.family = "'Roboto', sans-serif";
+        Chart.defaults.color = '#374151';
+        
+        // --- Chart Configurations ---
+
+        // 1. Global GDP Doughnut
+        const ctxGDP = document.getElementById('gdpChart').getContext('2d');
+        new Chart(ctxGDP, {
+            type: 'doughnut',
+            data: {
+                labels: ['India & EU Combined', 'Rest of World'],
+                datasets: [{
+                    data: [25, 75],
+                    backgroundColor: ['#1e3a8a', '#e5e7eb'],
+                    hoverOffset: 4,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    title: { display: true, text: 'Global GDP Share' },
+                    tooltip: {
+                        callbacks: {
+                            title: function(context) {
+                                let label = context[0].label;
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 2. Global Trade Doughnut
+        const ctxTrade = document.getElementById('tradeChart').getContext('2d');
+        new Chart(ctxTrade, {
+            type: 'doughnut',
+            data: {
+                labels: ['India & EU Combined', 'Rest of World'],
+                datasets: [{
+                    data: [33, 67],
+                    backgroundColor: ['#ea580c', '#e5e7eb'],
+                    hoverOffset: 4,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    title: { display: true, text: 'Global Trade Share' },
+                    tooltip: {
+                        callbacks: {
+                            title: function(context) {
+                                let label = context[0].label;
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 3. Tariff Pie Chart
+        const ctxTariff = document.getElementById('tariffChart').getContext('2d');
+        new Chart(ctxTariff, {
+            type: 'pie',
+            data: {
+                labels: [formatLabel('Tariff Free Trade'), formatLabel('Remaining Tariffs')],
+                datasets: [{
+                    data: [96, 4],
+                    backgroundColor: ['#0f766e', '#cbd5e1'], // Teal for positive
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right' },
+                    tooltip: {
+                        callbacks: {
+                            title: function(context) {
+                                let label = context[0].label;
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 4. Beneficiary Sectors (Horizontal Bar)
+        const ctxSectors = document.getElementById('sectorsChart').getContext('2d');
+        new Chart(ctxSectors, {
+            type: 'bar',
+            data: {
+                labels: [
+                    formatLabel('Marine Products'), 
+                    formatLabel('Textiles'), 
+                    formatLabel('Gems & Jewellery'), 
+                    formatLabel('Leather Goods'), 
+                    formatLabel('Footwear')
+                ],
+                datasets: [{
+                    label: 'Impact Score',
+                    data: [90, 85, 80, 75, 70], // Qualitative scoring based on text emphasis
+                    backgroundColor: '#1e3a8a',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { display: false } // Hide x axis numbers for cleaner look
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: function(context) {
+                                let label = context[0].label;
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            },
+                            label: function(context) {
+                                return 'High Growth Potential';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 5. Timeline Comparison (Bar)
+        const ctxTimeline = document.getElementById('timelineChart').getContext('2d');
+        new Chart(ctxTimeline, {
+            type: 'bar',
+            data: {
+                labels: [formatLabel('India-EU Negotiation'), formatLabel('EU-Mercosur Negotiation')],
+                datasets: [{
+                    label: 'Years in Negotiation',
+                    data: [20, 25],
+                    backgroundColor: ['#ea580c', '#94a3b8'], // Highlight India-EU
+                    barPercentage: 0.6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Negotiation Duration (Years)' },
+                    tooltip: {
+                        callbacks: {
+                            title: function(context) {
+                                let label = context[0].label;
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 6. Strategic Diversification (Bar - Comparison)
+        const ctxStrategy = document.getElementById('strategyChart').getContext('2d');
+        new Chart(ctxStrategy, {
+            type: 'bar',
+            data: {
+                labels: ['Current US Tariff', 'Potential US Hike', 'EU FTA Tariff'],
+                datasets: [{
+                    label: 'Tariff Percentage (%)',
+                    data: [50, 75, 0], // 0 for the goal of FTA
+                    backgroundColor: [
+                        '#ef4444', // Red for danger
+                        '#7f1d1d', // Dark Red for severe danger
+                        '#10b981'  // Green for success
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Tariff Rate (%)' }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Tariff Environment Comparison' },
+                    tooltip: {
+                        callbacks: {
+                            title: function(context) {
+                                let label = context[0].label;
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            },
+                            label: function(context) {
+                                return context.raw + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
